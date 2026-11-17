@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "3201290a-d3f4-460a-b954-d7ea90b26cf5",
-		"name": "Digital",
+		"_postman_id": "b0c81602-d5e4-4f8f-bf8a-eefbbbb8b598",
+		"name": "Digital Business Card",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -89,7 +89,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation UpdateCompany($id: String!, $input: UpdateCompanyInput!) { updateCompany(id: $id, input: $input) { id name website } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"name\": \"Global Tech Updated\", \"website\": \"https://updated.com\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation UpdateCompany($id: ID!, $input: UpdateCompanyInput!) { updateCompany(id: $id, input: $input) { id name website } }\",\n  \"variables\": { \"id\": \"0ed1c181-7107-4e01-ab0e-34a50f2a71ff\", \"input\": { \"name\": \"Global Tech Updated\", \"website\": \"https://updated.com\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -112,7 +112,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation RemoveCompany($id: String!) { removeCompany(id: $id) { id name } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+							"raw": "{\n  \"query\": \"mutation RemoveCompany($id: ID!) { deleteCompany(id: $id)  }\",\n  \"variables\": { \"id\": \"0468f683-42dd-438b-8b2e-8c61f7b7f61f\" }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -186,7 +186,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation UpdatePerson($id: String!, $input: UpdatePersonInput!) { updatePerson(id: $id, input: $input) { id firstName lastName email } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"firstName\": \"Анна-Мария\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation UpdatePerson($id: ID!, $input: UpdatePersonInput!) { updatePerson(id: $id, input: $input) { id firstName lastName email } }\",\n  \"variables\": { \"id\": \"59dec001-03e7-4455-a644-e4717c417251\", \"input\": { \"firstName\": \"Анна-Мария\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -209,7 +209,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation RemovePerson($id: String!) { removePerson(id: $id) { id email } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+							"raw": "{\n  \"query\": \"mutation RemovePerson($id: ID!) { deletePerson(id: $id) }\",\n  \"variables\": { \"id\": \"4ac52ab3-5704-4702-a4e4-f24b3c4d0153\" }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -237,7 +237,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"query { profiles { id slug name description links person { firstName lastName email } skills { name category } experiences { position period achievements company { name website } } projects { name description url } } }\"\n}"
+							"raw": "{\n  \"query\": \"query { profiles { id slug name description links person { firstName lastName email } skills { name category } experiences { position period achievements company { name website } } projects { name url } } }\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -283,7 +283,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation CreateProfile($input: CreateProfileInput!) { createProfile(input: $input) { id slug name } }\",\n  \"variables\": { \"input\": { \"slug\": \"anna-dev\", \"name\": \"Анна Смирнова\", \"description\": \"Frontend\", \"personId\": \"УКАЖИТЕ_UUID\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation CreateProfile($input: CreateProfileInput!) { createProfile(input: $input) { id slug name description links } }\",\n  \"variables\": { \"input\": { \"slug\": \"anna-dev\", \"name\": \"Анна Смирнова\", \"description\": \"Frontend\", \"personId\": \"59dec001-03e7-4455-a644-e4717c417251\",\n    \"links\": [\"https://github.com/anna-dev\"] } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -306,7 +306,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation UpdateProfile($id: String!, $input: UpdateProfileInput!) { updateProfile(id: $id, input: $input) { id name description } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"description\": \"Senior Frontend Dev\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation UpdateProfile($id: ID!, $input: UpdateProfileInput!) { updateProfile(id: $id, input: $input) { id name description } }\",\n  \"variables\": { \"id\": \"677c7ba0-e9f9-4835-8ab3-24d8dda7e160\", \"input\": { \"description\": \"Senior Frontend Dev\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -329,7 +329,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation RemoveProfile($id: String!) { removeProfile(id: $id) { id slug } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+							"raw": "{\n  \"query\": \"mutation RemoveProfile($id: ID!) { deleteProfile(id: $id) }\",\n  \"variables\": { \"id\": \"677c7ba0-e9f9-4835-8ab3-24d8dda7e160\" }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -380,7 +380,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation CreateSkill($input: CreateSkillInput!) { createSkill(input: $input) { id name category } }\",\n  \"variables\": { \"input\": { \"name\": \"React\", \"category\": \"Frontend\", \"personId\": \"УКАЖИТЕ_UUID\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation CreateSkill($input: CreateSkillInput!) { createSkill(input: $input) { id name category } }\",\n  \"variables\": { \"input\": { \"name\": \"React\", \"category\": \"Frontend\", \"personId\": \"59dec001-03e7-4455-a644-e4717c417251\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -403,7 +403,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation UpdateSkill($id: String!, $input: UpdateSkillInput!) { updateSkill(id: $id, input: $input) { id name category } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"name\": \"React.js\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation UpdateSkill($id: ID!, $input: UpdateSkillInput!) { updateSkill(id: $id, input: $input) { id name category } }\",\n  \"variables\": { \"id\": \"3616b2e5-1d43-49ec-a3e4-b630202ba582\", \"input\": { \"name\": \"React.js\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -426,7 +426,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation RemoveSkill($id: String!) { removeSkill(id: $id) { id name } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+							"raw": "{\n  \"query\": \"mutation RemoveSkill($id: ID!) { deleteSkill(id: $id) }\",\n  \"variables\": { \"id\": \"3616b2e5-1d43-49ec-a3e4-b630202ba582\" }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -477,7 +477,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation CreateProject($input: CreateProjectInput!) { createProject(input: $input) { id name url } }\",\n  \"variables\": { \"input\": { \"name\": \"Dashboard\", \"url\": \"https://github.com\", \"personId\": \"УКАЖИТЕ_UUID\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation CreateProject($input: CreateProjectInput!) { createProject(input: $input) { id name url } }\",\n  \"variables\": { \"input\": { \"name\": \"Dashboard\", \"url\": \"https://github.com\", \"personId\": \"59dec001-03e7-4455-a644-e4717c417251\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -500,7 +500,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation UpdateProject($id: String!, $input: UpdateProjectInput!) { updateProject(id: $id, input: $input) { id name url } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"name\": \"Admin Dashboard\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation UpdateProject($id: ID!, $input: UpdateProjectInput!) { updateProject(id: $id, input: $input) { id name url } }\",\n  \"variables\": { \"id\": \"3a91ed55-4b2c-4310-aec2-88202afab009\", \"input\": { \"name\": \"Admin Dashboard\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -523,7 +523,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation RemoveProject($id: String!) { removeProject(id: $id) { id name } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+							"raw": "{\n  \"query\": \"mutation RemoveProject($id: ID!) { deleteProject(id: $id) }\",\n  \"variables\": { \"id\": \"3a91ed55-4b2c-4310-aec2-88202afab009\" }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -574,7 +574,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation CreateExperience($input: CreateExperienceInput!) { createExperience(input: $input) { id position period } }\",\n  \"variables\": { \"input\": { \"position\": \"Developer\", \"period\": \"2024\", \"personId\": \"УКАЖИТЕ_UUID\", \"companyId\": \"УКАЖИТЕ_UUID\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation CreateExperience($input: CreateExperienceInput!) { createExperience(input: $input) { id position period achievements } }\",\n  \"variables\": { \"input\": { \"position\": \"Developer\", \"period\": \"2024\", \"personId\": \"59dec001-03e7-4455-a644-e4717c417251\", \"companyId\": \"0ed1c181-7107-4e01-ab0e-34a50f2a71ff\",\n    \"achievements\": [\n      \"Оптимизировал GraphQL-запросы на 40%\",\n      \"Внедрил Docker-инфраструктуру\"\n    ] } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -597,7 +597,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation UpdateExperience($id: String!, $input: UpdateExperienceInput!) { updateExperience(id: $id, input: $input) { id position period } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"position\": \"Senior Developer\" } }\n}"
+							"raw": "{\n  \"query\": \"mutation UpdateExperience($id: ID!, $input: UpdateExperienceInput!) { updateExperience(id: $id, input: $input) { id position period } }\",\n  \"variables\": { \"id\": \"a17d5950-a429-435e-9a71-77375329e03e\", \"input\": { \"position\": \"Senior Developer\" } }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
@@ -620,7 +620,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"query\": \"mutation RemoveExperience($id: String!) { removeExperience(id: $id) { id position } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+							"raw": "{\n  \"query\": \"mutation RemoveExperience($id: ID!) { deleteExperience(id: $id)  }\",\n  \"variables\": { \"id\": \"a17d5950-a429-435e-9a71-77375329e03e\" }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}",
