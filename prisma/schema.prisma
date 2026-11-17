@@ -1,0 +1,98 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+
+model Person {
+  id          String       @id @default(uuid())
+  firstName   String
+  lastName    String
+  email       String       @unique
+  
+  
+  profiles    Profile[]    
+  skills      Skill[]      
+  experiences Experience[] 
+  projects    Project[]    
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+
+model Company {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  website     String?
+  
+  
+  experiences Experience[]
+  projects    Project[]
+}
+
+
+model Profile {
+  id          String       @id @default(uuid())
+  slug        String       @unique 
+  name        String       
+  description String       
+  links       String[]     
+  personId    String
+  person      Person       @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  
+  skills      Skill[]
+  experiences Experience[]
+  projects    Project[]
+
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+
+model Skill {
+  id       String    @id @default(uuid())
+  name     String
+  category String?   
+
+  personId String
+  person   Person    @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  profiles Profile[] 
+}
+
+
+model Experience {
+  id           String    @id @default(uuid())
+  position     String
+  period       String
+  achievements String[]
+
+  personId     String
+  person       Person    @relation(fields: [personId], references: [id], onDelete: Cascade) // <--- Исправлено
+
+  companyId    String
+  company      Company   @relation(fields: [companyId], references: [id], onDelete: Restrict)
+
+  profiles     Profile[] 
+}
+
+
+model Project {
+  id        String    @id @default(uuid())
+  name      String
+  url       String?
+
+  personId  String
+  person    Person    @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  companyId String?
+  company   Company?  @relation(fields: [companyId], references: [id], onDelete: SetNull)
+
+  profiles  Profile[] 
+}

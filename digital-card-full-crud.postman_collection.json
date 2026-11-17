@@ -1,0 +1,644 @@
+{
+	"info": {
+		"_postman_id": "3201290a-d3f4-460a-b954-d7ea90b26cf5",
+		"name": "Digital Business Card - Full CRUD API (GraphQL)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Companies",
+			"item": [
+				{
+					"name": "Get All Companies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query { companies { id name website } }\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Companies",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query SearchCompanies($term: String!) { searchCompanies(searchTerm: $term) { id name website } }\",\n  \"variables\": { \"term\": \"Tech\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation CreateCompany($input: CreateCompanyInput!) { createCompany(input: $input) { id name website } }\",\n  \"variables\": { \"input\": { \"name\": \"Global Tech\", \"website\": \"https://globaltech.com\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation UpdateCompany($id: String!, $input: UpdateCompanyInput!) { updateCompany(id: $id, input: $input) { id name website } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"name\": \"Global Tech Updated\", \"website\": \"https://updated.com\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Company",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation RemoveCompany($id: String!) { removeCompany(id: $id) { id name } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Persons",
+			"item": [
+				{
+					"name": "Get All Persons",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query { persons { id firstName lastName email } }\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Person",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation CreatePerson($input: CreatePersonInput!) { createPerson(input: $input) { id firstName lastName email } }\",\n  \"variables\": { \"input\": { \"firstName\": \"Анна\", \"lastName\": \"Смирнова\", \"email\": \"anna@example.com\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Person",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation UpdatePerson($id: String!, $input: UpdatePersonInput!) { updatePerson(id: $id, input: $input) { id firstName lastName email } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"firstName\": \"Анна-Мария\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Person",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation RemovePerson($id: String!) { removePerson(id: $id) { id email } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profiles",
+			"item": [
+				{
+					"name": "Get All Profiles with Relations",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query { profiles { id slug name description links person { firstName lastName email } skills { name category } experiences { position period achievements company { name website } } projects { name description url } } }\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Profile by Slug",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query GetProfile($slug: String!) { profileBySlug(slug: $slug) { id slug name description } }\",\n  \"variables\": { \"slug\": \"ivan-petrov-backend\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation CreateProfile($input: CreateProfileInput!) { createProfile(input: $input) { id slug name } }\",\n  \"variables\": { \"input\": { \"slug\": \"anna-dev\", \"name\": \"Анна Смирнова\", \"description\": \"Frontend\", \"personId\": \"УКАЖИТЕ_UUID\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation UpdateProfile($id: String!, $input: UpdateProfileInput!) { updateProfile(id: $id, input: $input) { id name description } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"description\": \"Senior Frontend Dev\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Profile",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation RemoveProfile($id: String!) { removeProfile(id: $id) { id slug } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Skills",
+			"item": [
+				{
+					"name": "Get All Skills",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query { skills { id name category } }\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Skill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation CreateSkill($input: CreateSkillInput!) { createSkill(input: $input) { id name category } }\",\n  \"variables\": { \"input\": { \"name\": \"React\", \"category\": \"Frontend\", \"personId\": \"УКАЖИТЕ_UUID\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Skill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation UpdateSkill($id: String!, $input: UpdateSkillInput!) { updateSkill(id: $id, input: $input) { id name category } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"name\": \"React.js\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Skill",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation RemoveSkill($id: String!) { removeSkill(id: $id) { id name } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "Get All Projects",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query { projects { id name url } }\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation CreateProject($input: CreateProjectInput!) { createProject(input: $input) { id name url } }\",\n  \"variables\": { \"input\": { \"name\": \"Dashboard\", \"url\": \"https://github.com\", \"personId\": \"УКАЖИТЕ_UUID\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation UpdateProject($id: String!, $input: UpdateProjectInput!) { updateProject(id: $id, input: $input) { id name url } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"name\": \"Admin Dashboard\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Project",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation RemoveProject($id: String!) { removeProject(id: $id) { id name } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Experiences",
+			"item": [
+				{
+					"name": "Get All Experiences",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"query { experiences { id position period } }\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Experience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation CreateExperience($input: CreateExperienceInput!) { createExperience(input: $input) { id position period } }\",\n  \"variables\": { \"input\": { \"position\": \"Developer\", \"period\": \"2024\", \"personId\": \"УКАЖИТЕ_UUID\", \"companyId\": \"УКАЖИТЕ_UUID\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Experience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation UpdateExperience($id: String!, $input: UpdateExperienceInput!) { updateExperience(id: $id, input: $input) { id position period } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\", \"input\": { \"position\": \"Senior Developer\" } }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Experience",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"query\": \"mutation RemoveExperience($id: String!) { removeExperience(id: $id) { id position } }\",\n  \"variables\": { \"id\": \"УКАЖИТЕ_ID\" }\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}",
+							"host": [
+								"{{baseUrl}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/graphql",
+			"type": "string"
+		}
+	]
+}

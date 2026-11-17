@@ -1,0 +1,388 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Информация о компании-работодателе или заказчике"""
+type Company {
+  id: ID!
+
+  """Название компании"""
+  name: String!
+
+  """Официальный веб-сайт компании"""
+  website: String
+}
+
+"""Входные данные для создания компании"""
+input CreateCompanyInput {
+  """Название компании"""
+  name: String!
+
+  """Официальный веб-сайт компании"""
+  website: String
+}
+
+"""Данные для создания записи об опыте работы"""
+input CreateExperienceInput {
+  """Список достижений"""
+  achievements: [String!]!
+
+  """ID компании-работодателя (Company)"""
+  companyId: String!
+
+  """Период работы (например, 2022 - Present)"""
+  period: String!
+
+  """ID владельца (Person)"""
+  personId: String!
+
+  """Должность"""
+  position: String!
+}
+
+"""Данные для создания человека"""
+input CreatePersonInput {
+  """Email (уникальный)"""
+  email: String!
+
+  """Имя"""
+  firstName: String!
+
+  """Фамилия"""
+  lastName: String!
+}
+
+"""Данные для создания профиля"""
+input CreateProfileInput {
+  """Краткое описание"""
+  description: String!
+
+  """Массив ссылок"""
+  links: [String!]!
+
+  """Название визитки (например, Fullstack Portfolio)"""
+  name: String!
+
+  """ID владельца (Person)"""
+  personId: String!
+
+  """Уникальный slug (например, ivan-backend)"""
+  slug: String!
+}
+
+"""Данные для создания проекта"""
+input CreateProjectInput {
+  """ID связанной компании (опционально)"""
+  companyId: String
+
+  """Название проекта"""
+  name: String!
+
+  """ID владельца (Person)"""
+  personId: String!
+
+  """Ссылка на проект"""
+  url: String!
+}
+
+"""Данные для создания навыка"""
+input CreateSkillInput {
+  """Категория (например, Frontend, Backend)"""
+  category: String
+
+  """Название навыка (например, TypeScript)"""
+  name: String!
+
+  """ID владельца (Person)"""
+  personId: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+"""Опыт работы"""
+type Experience {
+  """Список достижений на позиции"""
+  achievements: [String!]!
+
+  """Компания-работодатель"""
+  company: Company!
+  companyId: ID!
+  id: ID!
+
+  """Период работы (например, 2021 - Present)"""
+  period: String!
+  person: Person!
+  personId: ID!
+
+  """Должность"""
+  position: String!
+}
+
+type Mutation {
+  createCompany(input: CreateCompanyInput!): Company!
+
+  """Добавить опыт работы"""
+  createExperience(input: CreateExperienceInput!): Experience!
+
+  """Создать человека"""
+  createPerson(input: CreatePersonInput!): Person!
+
+  """Создать новый профиль для человека"""
+  createProfile(input: CreateProfileInput!): Profile!
+
+  """Добавить проект"""
+  createProject(input: CreateProjectInput!): Project!
+
+  """Добавить навык человеку"""
+  createSkill(input: CreateSkillInput!): Skill!
+  deleteCompany(id: ID!): Boolean!
+
+  """Удалить опыт работы"""
+  deleteExperience(id: ID!): Boolean!
+
+  """Удалить человека"""
+  deletePerson(id: ID!): Boolean!
+
+  """Удалить профиль по ID"""
+  deleteProfile(id: ID!): Boolean!
+
+  """Удалить проект"""
+  deleteProject(id: ID!): Boolean!
+
+  """Удалить навык"""
+  deleteSkill(id: ID!): Boolean!
+  updateCompany(id: ID!, input: UpdateCompanyInput!): Company!
+
+  """Обновить опыт работы"""
+  updateExperience(id: ID!, input: UpdateExperienceInput!): Experience!
+
+  """Обновить человека"""
+  updatePerson(id: ID!, input: UpdatePersonInput!): Person!
+
+  """Обновить существующий профиль"""
+  updateProfile(id: ID!, input: UpdateProfileInput!): Profile!
+
+  """Обновить проект"""
+  updateProject(id: ID!, input: UpdateProjectInput!): Project!
+
+  """Обновить навык"""
+  updateSkill(id: ID!, input: UpdateSkillInput!): Skill!
+}
+
+"""Сущность человека (владелец визитки)"""
+type Person {
+  createdAt: DateTime!
+
+  """Email"""
+  email: String!
+
+  """Опыт работы человека"""
+  experiences: [Experience!]!
+
+  """Имя"""
+  firstName: String!
+  id: ID!
+
+  """Фамилия"""
+  lastName: String!
+
+  """Связанные цифровые визитки"""
+  profiles: [Profile!]!
+
+  """Проекты человека"""
+  projects: [Project!]!
+
+  """Навыки человека"""
+  skills: [Skill!]!
+  updatedAt: DateTime!
+}
+
+"""Цифровая визитка (Profile)"""
+type Profile {
+  """Дата создания"""
+  createdAt: DateTime!
+
+  """Описание / Статус"""
+  description: String!
+
+  """Опыт работы, привязанный к профилю"""
+  experiences: [Experience!]!
+  id: ID!
+
+  """Ссылки на соцсети и ресурсы"""
+  links: [String!]!
+
+  """Название профиля"""
+  name: String!
+
+  """Владелец профиля"""
+  person: Person!
+
+  """ID владельца профиля"""
+  personId: ID!
+
+  """Проекты, привязанные к профилю"""
+  projects: [Project!]!
+
+  """Навыки, привязанные к этому профилю"""
+  skills: [Skill!]!
+
+  """Уникальный URL-идентификатор (slug)"""
+  slug: String!
+
+  """Дата обновления"""
+  updatedAt: DateTime!
+}
+
+"""Проект"""
+type Project {
+  """Компания, если проект связан с ней"""
+  company: Company
+  companyId: ID
+  id: ID!
+
+  """Название проекта"""
+  name: String!
+  person: Person!
+  personId: ID!
+
+  """Ссылка на проект"""
+  url: String!
+}
+
+type Query {
+  companies: [Company!]!
+
+  """Получить весь опыт работы"""
+  experiences: [Experience!]!
+
+  """Получить первую запись опыта"""
+  firstExperience: Experience!
+
+  """Получить первую запись человека"""
+  firstPerson: Person!
+
+  """Получить первый проект"""
+  firstProject: Project!
+
+  """Получить первый навык"""
+  firstSkill: Skill!
+
+  """Получить человека по ID"""
+  person(id: ID!): Person!
+
+  """Получить список всех людей"""
+  persons: [Person!]!
+
+  """Получить профиль по уникальному slug"""
+  profileBySlug(slug: String!): Profile!
+
+  """Получить список всех профилей"""
+  profiles: [Profile!]!
+
+  """Получить все проекты"""
+  projects: [Project!]!
+  searchCompanies(searchTerm: String!): [Company!]!
+
+  """Получить все навыки"""
+  skills: [Skill!]!
+}
+
+"""Навык"""
+type Skill {
+  """Категория навыка (например, Backend, Frontend)"""
+  category: String
+  id: ID!
+
+  """Название навыка (например, TypeScript, NestJS)"""
+  name: String!
+  person: Person!
+  personId: ID!
+}
+
+"""Входные данные для обновления компании"""
+input UpdateCompanyInput {
+  """Название компании"""
+  name: String
+
+  """Официальный веб-сайт компании"""
+  website: String
+}
+
+"""Данные для обновления опыта работы"""
+input UpdateExperienceInput {
+  """Список достижений"""
+  achievements: [String!]
+
+  """ID компании-работодателя (Company)"""
+  companyId: String
+
+  """Период работы (например, 2022 - Present)"""
+  period: String
+
+  """ID владельца (Person)"""
+  personId: String
+
+  """Должность"""
+  position: String
+}
+
+"""Данные для обновления человека"""
+input UpdatePersonInput {
+  """Email (уникальный)"""
+  email: String
+
+  """Имя"""
+  firstName: String
+
+  """Фамилия"""
+  lastName: String
+}
+
+"""Данные для обновления профиля"""
+input UpdateProfileInput {
+  """Краткое описание"""
+  description: String
+
+  """Массив ссылок"""
+  links: [String!]
+
+  """Название визитки (например, Fullstack Portfolio)"""
+  name: String
+
+  """ID владельца (Person)"""
+  personId: String
+
+  """Уникальный slug (например, ivan-backend)"""
+  slug: String
+}
+
+"""Данные для обновления проекта"""
+input UpdateProjectInput {
+  """ID связанной компании (опционально)"""
+  companyId: String
+
+  """Название проекта"""
+  name: String
+
+  """ID владельца (Person)"""
+  personId: String
+
+  """Ссылка на проект"""
+  url: String
+}
+
+"""Данные для обновления навыка"""
+input UpdateSkillInput {
+  """Категория (например, Frontend, Backend)"""
+  category: String
+
+  """Название навыка (например, TypeScript)"""
+  name: String
+
+  """ID владельца (Person)"""
+  personId: String
+}
